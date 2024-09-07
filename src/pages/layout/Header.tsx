@@ -1,5 +1,6 @@
 import {AppBar, Box, Button, IconButton, Toolbar, Typography} from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
+import Cart from '../product/Cart.tsx';
 
 export default function ButtonAppBar() {
   return (
@@ -18,6 +19,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Products
           </Typography>
+          <Cart />
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>

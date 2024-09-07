@@ -30,23 +30,28 @@ export default function ProductDetails() {
     return (
       <>
         <Grid key={product.id}>
-          <Card sx={{display: 'flex', flexDirection: 'column', width: '100%', height: '300px'}}>
-            <CardContent sx={{flexGrow: 1}}>
-              <Link to={`/product/${product.id}`} style={{textDecoration: 'none'}}>
-                <Typography noWrap variant="body2" gutterBottom>
-                  {product.title}
-                </Typography>
-              </Link>
+          <Card>
+            <CardContent sx={{display: 'flex', flexDirection: 'row', gap: '100px'}}>
               <CardMedia
                 component="img"
-                height="140"
+                height="300"
                 image={product.image}
                 alt={product.title}
                 sx={{objectFit: 'contain'}}
               />
-              <Typography sx={{color: 'text.secondary', mb: 1.5}}>
-                {product.price}
-              </Typography>
+              <div>
+                <Typography noWrap variant="h4" gutterBottom>
+                  {product.title}
+                </Typography>
+
+                <Typography sx={{color: 'text.secondary', mb: 5}}>
+                  ${product.price}
+                </Typography>
+
+                <Typography sx={{color: 'text.secondary'}}>
+                  {product.description}
+                </Typography>
+              </div>
             </CardContent>
             <CardActions sx={{justifyContent: 'flex-end'}}>
               <Button size="small" endIcon={<AddShoppingCartIcon/>} variant="contained">Add to cart</Button>
