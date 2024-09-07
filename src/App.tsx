@@ -1,10 +1,11 @@
 import './App.css'
-import MovieListing from './pages/movie/MovieListing.tsx';
-import MovieDetails from './pages/movie/MovieDetails.tsx';
+import ProductListing from './pages/product/ProductListing.tsx';
+import ProductDetails from './pages/product/ProductDetails.tsx';
 import {createBrowserRouter} from 'react-router-dom';
 import {RouterProvider} from 'react-router';
 import Layout from './pages/layout/Layout.tsx';
 import About from './pages/about/About.tsx';
+import {Container} from '@mui/material';
 
 const router = createBrowserRouter([
   {
@@ -12,11 +13,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <MovieListing />,
+        element: <ProductListing />,
       },
       {
-        path: "movies/:id",
-        element: <MovieDetails />,
+        path: "product/:id",
+        element: <ProductDetails />,
       },
       {
         path: 'about',
@@ -29,9 +30,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <div>
+      <Container maxWidth={false}>
         <RouterProvider router={router} />
-      </div>
+      </Container>
     </>
   )
 }
