@@ -5,6 +5,8 @@ import {Button, Card, CardActions, CardContent, CardMedia, Typography} from '@mu
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Grid from '@mui/material/Grid2';
 import Loader from '../../components/Loader.tsx';
+import {useDispatch} from 'react-redux';
+import {addCart} from '../../store/cartSlice.ts';
 
 const URL = 'https://fakestoreapi.com/products';
 
@@ -12,6 +14,7 @@ export default function ProductDetails() {
   const {id} = useParams();
   const [product, setProduct] = useState<Product | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -55,7 +58,7 @@ export default function ProductDetails() {
               </div>
             </CardContent>
             <CardActions sx={{justifyContent: 'flex-end'}}>
-              <Button size="small" endIcon={<AddShoppingCartIcon/>} variant="contained">Add to cart</Button>
+              <Button size="small" endIcon={<AddShoppingCartIcon/>} variant="contained" onClick={() => dispatch(addCart(product))}>Add to cart</Button>
             </CardActions>
           </Card>
         </Grid>

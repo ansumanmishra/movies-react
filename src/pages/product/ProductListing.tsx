@@ -38,7 +38,7 @@ export default function ProductListing() {
 
   return (
     <>
-      <Grid container spacing={2} columns={16}>
+      <Grid container spacing={4} columns={16}>
         {products.map(product => (
           <Grid key={product.id} size={4}>
             <ProductCard product={product}/>

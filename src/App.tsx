@@ -30,9 +30,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <Container maxWidth={false}>
         <RouterProvider router={router}/>
-      </Container>
     </>
   )
 }
