@@ -1,14 +1,16 @@
 import {useEffect, useState} from 'react';
 import './Product.css';
-import {Product} from '../../shared/interfaces/Product.ts';
 import Grid from '@mui/material/Grid2';
 import ProductCard from './ProductCard.tsx';
 import Loader from '../../components/Loader.tsx';
+import {useDispatch, useSelector} from 'react-redux';
+import {addProducts} from '../../store/productSlice.ts';
 
 const productApiUrl = 'https://fakestoreapi.com/products';
 
 export default function ProductListing() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products.data);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>(undefined);
 
@@ -18,18 +20,12 @@ export default function ProductListing() {
       fetch(productApiUrl)
         .then(response => response.json())
         .then(data => {
-          console.log(data)
-          setProducts(data)
+          dispatch(addProducts(data))
         })
         .finally(() => setLoading(false));
     } catch (error) {
       setError(error);
     }
-
-    fetch(productApiUrl)
-      .then(response => response.json())
-      .then(data => setProducts(data))
-      .finally(() => setLoading(false));
   }, []);
 
   if (loading) {

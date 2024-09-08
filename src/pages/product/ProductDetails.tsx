@@ -1,9 +1,10 @@
 import {Product} from '../../shared/interfaces/Product.ts';
-import {Link, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {Button, Card, CardActions, CardContent, CardMedia, Typography} from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Grid from '@mui/material/Grid2';
+import Loader from '../../components/Loader.tsx';
 
 const URL = 'https://fakestoreapi.com/products';
 
@@ -23,7 +24,7 @@ export default function ProductDetails() {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <Loader />
   }
 
   if (product) {

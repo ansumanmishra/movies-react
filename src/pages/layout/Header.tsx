@@ -1,6 +1,6 @@
 import {AppBar, Box, Button, IconButton, Toolbar, Typography} from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
-import Cart from '../product/Cart.tsx';
+import Cart from '../cart/Cart.tsx';
 
 export default function ButtonAppBar() {
   return (

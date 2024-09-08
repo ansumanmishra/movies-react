@@ -9,19 +9,19 @@ import {Container} from '@mui/material';
 
 const router = createBrowserRouter([
   {
-    element: <Layout />,
+    element: <Layout/>,
     children: [
       {
         path: "/",
-        element: <ProductListing />,
+        element: <ProductListing/>,
       },
       {
         path: "product/:id",
-        element: <ProductDetails />,
+        element: <ProductDetails/>,
       },
       {
         path: 'about',
-        element: <About />
+        element: <About/>
       }
     ]
   },
@@ -31,7 +31,7 @@ function App() {
   return (
     <>
       <Container maxWidth={false}>
-        <RouterProvider router={router} />
+        <RouterProvider router={router}/>
       </Container>
     </>
   )
