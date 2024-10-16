@@ -6,6 +6,7 @@ import {RouterProvider} from 'react-router';
 import Layout from './pages/layout/Layout.tsx';
 import About from './pages/about/About.tsx';
 import {Container} from '@mui/material';
+import CartListing from './pages/cart/CartListing.tsx';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "product/:id",
         element: <ProductDetails/>,
+      },
+      {
+        path: 'cart',
+        element: <CartListing />
       },
       {
         path: 'about',

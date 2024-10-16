@@ -4,7 +4,7 @@ import Cart from '../cart/Cart.tsx';
 import {Link as RouterLink} from 'react-router-dom';
 import {Link} from '@mui/material';
 import {useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 export default function ButtonAppBar() {
   const [searchText, setSearchText] = useState('');
@@ -12,7 +12,7 @@ export default function ButtonAppBar() {
 
   const handleSearch = (text: string) => {
     setSearchText(text);
-    navigate('/', { state: { searchText } });
+    navigate('/', {state: {searchText}});
   }
 
   return (
@@ -37,9 +37,11 @@ export default function ButtonAppBar() {
           </Link>
           <Box sx={{flexGrow: 1}}/>
           <TextField id="standard-basic" label="Search" variant="filled"
-                     sx={{mr: 2, backgroundColor: 'white', borderRadius: '5px'}}           value={searchText}
+                     sx={{mr: 2, backgroundColor: 'white', borderRadius: '5px'}} value={searchText}
                      onChange={(e) => handleSearch(e.target.value)}/>
-          <Cart/>
+          <RouterLink to="/cart">
+            <Cart/>
+          </RouterLink>
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
