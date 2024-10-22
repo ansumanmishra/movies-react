@@ -59,5 +59,13 @@
 }
 
 .cart-item .delete-icon:hover {
-  transform: scale(1.2); /* Slight zoom effect on hover */
+  transform: scale(1.2);
+}
+
+.total-price-block {
+  padding: 15px 60px;
+  border-top: 1px solid #e0e0e0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
 }

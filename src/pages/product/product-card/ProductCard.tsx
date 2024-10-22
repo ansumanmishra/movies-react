@@ -1,8 +1,8 @@
 import {Link} from '@mui/material';
 import {Link as RouterLink} from 'react-router-dom';
-import {Product} from '../../models/Product.ts';
+import {Product} from '../../../models/Product.ts';
 import {useDispatch} from 'react-redux';
-import {addCart} from '../../store/cartSlice.ts';
+import {addCart} from '../../../store/cartSlice.ts';
 import {FaCartPlus} from "react-icons/fa";
 
 const ProductCard = ({product}: { product: Product }) => {

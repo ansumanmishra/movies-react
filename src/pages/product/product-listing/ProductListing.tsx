@@ -1,12 +1,11 @@
 import {useEffect, useState} from 'react';
-import ProductCard from './ProductCard.tsx';
-import Loader from '../../components/Loader.tsx';
+import ProductCard from '../product-card/ProductCard.tsx';
+import Loader from '../../../components/Loader.tsx';
 import {useDispatch, useSelector} from 'react-redux';
-import {addProducts} from '../../store/productSlice.ts';
+import {addProducts} from '../../../store/productSlice.ts';
 import {useSearchParams} from 'react-router-dom';
 import './Product.css';
-
-const productApiUrl = 'https://fakestoreapi.com/products';
+import {PRODUCT_API_URL} from '../../../constants/config.ts';
 
 export default function ProductListing() {
   const dispatch = useDispatch();
@@ -21,7 +20,7 @@ export default function ProductListing() {
   useEffect(() => {
     setLoading(true);
     try {
-      fetch(productApiUrl)
+      fetch(PRODUCT_API_URL)
         .then(response => response.json())
         .then(data => {
           dispatch(addProducts(data))

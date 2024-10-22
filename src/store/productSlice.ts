@@ -1,13 +1,24 @@
 import {Product} from '../models/Product.ts';
-import {createSlice} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {PRODUCT_API_URL} from '../constants/config.ts';
 
 export interface ProductState {
   data: Product[];
+  loadingState: 'idle' | 'pending' | 'succeeded' | 'failed'
 }
 
 const initialState: ProductState = {
   data: [],
+  loadingState: 'idle',
 };
+
+export const fetchProducts = createAsyncThunk(
+  'product/fetchProducts',
+  async () => {
+    const response = await fetch(PRODUCT_API_URL);
+    return response.json();
+  },
+)
 
 const productSlice = createSlice({
   name: 'product',
@@ -16,6 +27,20 @@ const productSlice = createSlice({
     addProducts: (state, action) => {
       state.data = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchProducts.pending, (state: ProductState) => {
+        state.loadingState = 'pending';
+      })
+      .addCase(fetchProducts.fulfilled, (state: ProductState, action) => {
+        const data: Product[] = action.payload as Product[];
+        state.data = data;
+        state.loadingState = 'succeeded';
+      })
+      .addCase(fetchProducts.rejected, (state: ProductState) => {
+        state.loadingState = 'failed';
+      });
   },
 });
 

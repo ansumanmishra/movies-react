@@ -1,6 +1,6 @@
 import './App.css'
-import ProductListing from './pages/product/ProductListing.tsx';
-import ProductDetails from './pages/product/ProductDetails.tsx';
+import ProductListing from './pages/product/product-listing/ProductListing.tsx';
+import ProductDetails from './pages/product/product-details/ProductDetails.tsx';
 import {createBrowserRouter} from 'react-router-dom';
 import {RouterProvider} from 'react-router';
 import Layout from './pages/layout/Layout.tsx';

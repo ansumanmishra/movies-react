@@ -23,7 +23,7 @@ export default function ButtonAppBar() {
   return (
     <div className="toolbar">
       <Link to="/">{SITE_TITLE}</Link>
-      <input type="text" value={searchText} onChange={(e) => handleSearch(e.target.value)}/>
+      <input type="text" placeholder="Search..." value={searchText} onChange={(e) => handleSearch(e.target.value)}/>
       <Link to="/cart">
         <Cart/>
       </Link>
