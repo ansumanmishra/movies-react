@@ -3,12 +3,12 @@ import {useSelector} from 'react-redux';
 import {Badge} from '@mui/material';
 
 const Cart = () => {
-  const cartProducts = useSelector((state) => state.cart.products);
+  const cartItems = useSelector((state) => state.cart.cartItems);
 
   return (
     <>
-      {cartProducts.length ? (
-        <Badge badgeContent={cartProducts.length} color="primary">
+      {cartItems.length ? (
+        <Badge badgeContent={cartItems.length} color="primary">
           <ShoppingCartIcon/>
         </Badge>
       ) : (

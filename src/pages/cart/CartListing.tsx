@@ -1,20 +1,42 @@
-import {useSelector} from 'react-redux';
-import Grid from '@mui/material/Grid2';
-import ProductCard from '../product/ProductCard.tsx';
+import * as React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from '../../store/store.ts';
+import './Cart.css';
+import { TiDelete } from "react-icons/ti";
+import {removeCart, updateQuantity} from '../../store/cartSlice.ts';
 
 const CartListing = () => {
-  const cartItems = useSelector((state) => state.cart.products);
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
 
   if (cartItems.length === 0) {
     return <div>Cart is empty</div>
   }
 
-  return <Grid container spacing={4} columns={16}>
-        {cartItems.map(product => (
-          <Grid key={product.id} size={4}>
-            <ProductCard product={product}/>
-          </Grid>
-        ))}
-      </Grid>
+  return (
+    <div className="cart-listing-container">
+      {cartItems.map((cartItem) => (
+        <div className="cart-item" key={cartItem.id}>
+          <div className="cart-item-image">
+            <img src={cartItem.image} alt={cartItem.title}/>
+          </div>
+          <div className="cart-item-details">
+            <h3>{cartItem.title}</h3>
+            <p>${cartItem.totalPrice ?? cartItem.price}</p>
+          </div>
+          <div className="cart-item-quantity">
+            <select name="" id="" onChange={(e) => dispatch(updateQuantity({id: cartItem.id, quantity: e.target.value}))} value={cartItem.quantity}>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <TiDelete className="delete-icon" onClick={() => dispatch(removeCart(cartItem.id))}/>
+        </div>
+      ))}
+    </div>
+  )
 }
 export default CartListing;

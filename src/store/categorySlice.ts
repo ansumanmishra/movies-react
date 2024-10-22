@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-type CategorySlice = {
+export type CategorySlice = {
   data: string[];
   selectedCategory: string;
 }

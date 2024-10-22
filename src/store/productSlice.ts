@@ -1,5 +1,5 @@
-import {Product} from '../shared/interfaces/Product.ts';
-import {createSelector, createSlice} from '@reduxjs/toolkit';
+import {Product} from '../models/Product.ts';
+import {createSlice} from '@reduxjs/toolkit';
 
 export interface ProductState {
   data: Product[];

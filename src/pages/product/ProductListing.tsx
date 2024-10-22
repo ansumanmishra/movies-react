@@ -1,10 +1,10 @@
 import {useEffect, useState} from 'react';
-import './Product.css';
-import Grid from '@mui/material/Grid2';
 import ProductCard from './ProductCard.tsx';
 import Loader from '../../components/Loader.tsx';
 import {useDispatch, useSelector} from 'react-redux';
 import {addProducts} from '../../store/productSlice.ts';
+import {useSearchParams} from 'react-router-dom';
+import './Product.css';
 
 const productApiUrl = 'https://fakestoreapi.com/products';
 
@@ -15,6 +15,8 @@ export default function ProductListing() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>(undefined);
+  const [searchParams] = useSearchParams();
+  const keyword = searchParams.get('keyword');
 
   useEffect(() => {
     setLoading(true);
@@ -30,31 +32,47 @@ export default function ProductListing() {
     }
   }, []);
 
-  useEffect( () => {
-    if (selectedCategory) {
-      setFilteredProducts(products.filter(product => product.category === selectedCategory));
+  useEffect(() => {
+    if (selectedCategory && keyword) {
+      const filteredProducts = products.filter(product =>
+        product.category === selectedCategory &&
+        product.title.toLowerCase().includes(keyword.toLowerCase())
+      );
+      setFilteredProducts(filteredProducts);
+    } else if (selectedCategory) {
+      const filteredProducts = products.filter(product =>
+        product.category === selectedCategory
+      );
+      setFilteredProducts(filteredProducts);
+    } else if (keyword) {
+      const filteredProducts = products.filter(product =>
+        product.title.toLowerCase().includes(keyword.toLowerCase())
+      );
+      setFilteredProducts(filteredProducts);
     } else {
       setFilteredProducts(products);
     }
-  }, [selectedCategory, products])
+  }, [selectedCategory, products, keyword]);
 
   if (loading) {
-    return  <Loader />
+    return <Loader/>
   }
 
   if (error) {
     return <div>Something went wrong, please try again</div>
   }
 
+  if (filteredProducts.length === 0) {
+    return <div>No products found</div>
+  }
+
   return (
     <>
-      <Grid container spacing={4} columns={16}>
+      <div className="product-listing-container">
         {filteredProducts.map(product => (
-          <Grid key={product.id} size={4}>
-            <ProductCard product={product}/>
-          </Grid>
+          <ProductCard key={product.id} product={product}/>
         ))}
-      </Grid>
+      </div>
     </>
   )
 }

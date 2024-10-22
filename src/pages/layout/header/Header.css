@@ -1,0 +1,52 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 98%;
+  z-index: 1000;
+}
+
+.toolbar a:first-child {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000000;
+  text-decoration: none;
+  margin-right: auto;
+}
+
+.toolbar input[type="text"] {
+  width: 250px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  margin: 0 20px;
+  transition: width 0.3s ease;
+}
+
+/* Search input focus effect */
+.toolbar input[type="text"]:focus {
+  outline: none;
+  border-color: #1976d2;
+  width: 300px;
+}
+
+.toolbar a:last-child {
+  color: #1976d2;
+  font-size: 1.5rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.toolbar a:last-child:hover {
+  color: #0d47a1;
+}

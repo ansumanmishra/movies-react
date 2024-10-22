@@ -1,7 +1,13 @@
 import {configureStore} from '@reduxjs/toolkit';
-import productSlice from './productSlice.ts';
-import CartSlice from './cartSlice.ts';
+import productSlice, {ProductState} from './productSlice.ts';
+import CartSlice, {Cart} from './cartSlice.ts';
 import categorySlice from './categorySlice.ts';
+
+export type RootState = {
+  products: ProductState;
+  categories: categorySlice;
+  cart: Cart
+};
 
 const store = configureStore({
   reducer: {

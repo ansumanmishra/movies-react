@@ -1,8 +1,52 @@
 body {
   margin: 0;
+  font-family: sans-serif;
 }
 
-.sidebar-container {
-  margin-top: 75px;
-  padding-left: 20px;
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header styling */
+header {
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.content-wrapper {
+  display: flex;
+  flex: 1;
+  padding-top: 80px;
+}
+
+/* Sidebar styling */
+.sidebar {
+  width: 250px;
+  padding: 15px;
+}
+
+/* Main content styling */
+.content {
+  flex-grow: 1;
+  background-color: #fff;
+  padding: 15px;
+}
+
+/* Footer styling */
+footer {
+  color: black;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  bottom: 0;
 }

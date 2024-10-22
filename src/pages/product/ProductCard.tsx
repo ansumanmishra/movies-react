@@ -1,38 +1,22 @@
-import {Button, Card, CardActions, CardContent, CardMedia, Link, Typography} from '@mui/material';
+import {Link} from '@mui/material';
 import {Link as RouterLink} from 'react-router-dom';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import {Product} from '../../shared/interfaces/Product.ts';
+import {Product} from '../../models/Product.ts';
 import {useDispatch} from 'react-redux';
 import {addCart} from '../../store/cartSlice.ts';
+import {FaCartPlus} from "react-icons/fa";
 
 const ProductCard = ({product}: { product: Product }) => {
   const dispatch = useDispatch();
 
   return (
-    <Card sx={{display: 'flex', flexDirection: 'column', width: '100%', height: '300px'}}>
+    <div className="product-card">
+      <FaCartPlus className="fa-cart-plus" onClick={() => dispatch(addCart(product))} style={{position: 'absolute', top: '10px', cursor: 'pointer', right: '5px'}}/>
       <Link component={RouterLink} to={`/product/${product.id}`} style={{textDecoration: 'none'}}>
-        <CardMedia
-          component="img"
-          height="140"
-          image={product.image}
-          alt={product.title}
-          sx={{objectFit: 'contain'}}
-        />
+        <img src={product.image} alt={product.title}/>
       </Link>
-      <CardContent sx={{flexGrow: 1}}>
-        <Link component={RouterLink} to={`/product/${product.id}`} style={{textDecoration: 'none'}}>
-          <Typography noWrap variant="h6" gutterBottom sx={{color: 'text.secondary'}}>
-            {product.title}
-          </Typography>
-        </Link>
-        <Typography variant="h6" sx={{color: 'text.secondary', mb: 1.5}}>
-          ${product.price}
-        </Typography>
-      </CardContent>
-      <CardActions sx={{justifyContent: 'flex-end'}}>
-        <Button size="small" endIcon={<AddShoppingCartIcon/>} onClick={() => dispatch(addCart(product))}></Button>
-      </CardActions>
-    </Card>
+      <h3>{product.title}</h3>
+      <p>${product.price}</p>
+    </div>
   )
 }
 

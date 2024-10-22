@@ -1,4 +1,4 @@
-import {Product} from '../../shared/interfaces/Product.ts';
+import {Product} from '../../models/Product.ts';
 import {useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {Button, Card, CardActions, CardContent, CardMedia, Typography} from '@mui/material';
