@@ -31,7 +31,7 @@ export default function ProductDetails() {
   if (product) {
     return (
       <>
-        <div class="product-details">
+        <div className="product-details">
           <img src={product.image} alt={product.title} style={{width: '400px', height: '400px'}}/>
           <h1>{product.title}</h1>
           <p>{product.category}</p>
