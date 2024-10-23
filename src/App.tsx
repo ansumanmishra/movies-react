@@ -5,6 +5,7 @@ import {createBrowserRouter} from 'react-router-dom';
 import {RouterProvider} from 'react-router';
 import Layout from './pages/layout/Layout.tsx';
 import CartListing from './pages/cart/CartListing.tsx';
+import React from 'react';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'cart',
-        element: <CartListing />
+        element: <CartListing/>
       },
     ]
   },
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-        <RouterProvider router={router}/>
+      <RouterProvider router={router}/>
     </>
   )
 }

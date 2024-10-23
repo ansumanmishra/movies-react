@@ -40,7 +40,7 @@ const CartListing = () => {
         </div>
       ))}
       <div className="total-price-block">
-        <div style={{textAlign: 'right'}}>Total: {totalPrice}</div>
+        <div style={{textAlign: 'right'}}>Total: ${totalPrice}</div>
       </div>
     </div>
   )
