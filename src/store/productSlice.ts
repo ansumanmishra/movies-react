@@ -44,6 +44,10 @@ const productSlice = createSlice({
   },
 });
 
+export const getProductById = (state: ProductState, productId: number | undefined) => {
+  return state.data.find((product: Product) => product.id === productId);
+};
+
 export const {addProducts} = productSlice.actions;
 
 export default productSlice.reducer;

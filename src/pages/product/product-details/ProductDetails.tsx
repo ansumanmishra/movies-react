@@ -1,32 +1,13 @@
-import {Product} from '../../../models/Product.ts';
 import {useParams} from 'react-router-dom';
-import {useEffect, useState} from 'react';
-import Loader from '../../../components/Loader.tsx';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {addCart} from '../../../store/cartSlice.ts';
 import './ProductDetails.css';
-
-const URL = 'https://fakestoreapi.com/products';
+import {getProductById} from '../../../store/productSlice.ts';
 
 export default function ProductDetails() {
   const {id} = useParams();
-  const [product, setProduct] = useState<Product | undefined>(undefined);
-  const [loading, setLoading] = useState<boolean>(false);
+  const product = useSelector((state) => getProductById(state.products, +id));
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const fetchProduct = async () => {
-      setLoading(true);
-      const productResponse = await fetch(`${URL}/${id}`).finally(() => setLoading(false));
-      const data = await productResponse.json();
-      setProduct(data);
-    }
-    fetchProduct();
-  }, [id]);
-
-  if (loading) {
-    return <Loader />
-  }
 
   if (product) {
     return (
